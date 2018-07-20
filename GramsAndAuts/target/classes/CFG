@@ -1,0 +1,46 @@
+
+Format of the CFG:
+
+N = {number,identifier,integer,string,constant,number,char,varType,varDecl,declList,
+    arrayDecl,expr,term,factor,relation,condition,stmt,IOstmt
+    assigStmt,whileStmt,forStmt,ifStmt,multiStmt,simpleStmt,complStmt,
+    #end}
+
+E = {#start,<,>,<=,>=,==,!=,+,-,*,/,(,),{,},[,],:,;,,,.,&&,||,_,
+    a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,
+    0,1,2,3,4,5,6,7,8,9,
+    array,char,do,else,if,in,bool,print,while,for,integer,break,real,string,struct
+    #end}
+
+P:  #start -> declList, compStmt | declList
+    number -> digit | notnull,digit | notnull,number
+    integer -> number | -,notnull | +,notnull | -,notnull,number | +,notnull,number
+    char -> letter | digit
+    string -> char | char,string
+    constant -> integer | consString
+    varType -> "BOOL" | "CHAR" | "INT" | "REAL" | "STRING"
+    varDecl -> vartype,identifier,";"
+    declList -> varDecl | varDecl,declList
+    arrayDecl -> varType,"[",number,"]",";"
+    expr -> expr,"+",term | expr,"-",term | term
+    term -> term,"*",factor | term,"/",factor | factor
+    factor -> identifier | constant | "(",expr,")"
+    relation -> < | > | <= | >= | == | !=
+    condition -> expr | relation | expr
+
+    assigStmt -> identifier,"=",expr,";"
+    whileStmt -> "while",condition,"{",stmt,"}"
+    forStmt -> "for","(",vartype,identifier,"in",array,")","{",stmt,"}"
+    ifStmt -> "if",compStmt,"{",stmt,"}" | ifStmt,"else if",compCond,"{",stmt,"}" |
+                ifStmt,"else","{",stmt,"}"
+    compCond -> condition | condition,relation,condition
+    IOstmt -> "read",";" | "print",identifier,";" | "print",expr,";"
+    multiStmt -> stmt | stmt,";",multiStmt,";"
+    simpleStmt -> assignStmt | IOstmt
+    complStmt -> whileStmt | ifStmt | multiStmt | forStmt
+    stmt -> simpleStmt | complStmt
+    struct -> "struct",identifier,"{",declList,"}"
+
+
+
+S: {#start}

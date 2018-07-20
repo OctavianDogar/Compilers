@@ -1,0 +1,104 @@
+
+Mini lang specification:
+
+LEXIC:
+
+1. Alphabet
+
+<letter> ::= a | b | c | .. | z | A | B | C| .. | Z
+<digit> ::= 0 | 1 | 2 | 3 | .. | 9 
+<underline> ::= _
+
+2. Special symbols
+
+<operator> ::= + | - | * | / | < | <= | = | >= | ==
+<separator> ::= [ | ] | { | } | ;
+<reservedWord> ::= "array" | "char" | "do" |
+					"else" | "if" | "in" | "bool" |
+					"print" | "while" | "for" | "integer" |
+					"break" | "&&" | "||" | "real" | "string" |
+					"struct"
+
+3. Identifiers
+
+<identifier> ::= <letter> | <letter><digit> | 
+				<letter><identifier>
+
+4. Constants
+
+<notnull> ::= 1 | 2 | .. | 9
+<number> ::= <digit> | <notnull><digit> | <notnull><number>
+<integer> ::= <number> | -<notnull> | +<notnull> | 
+				-<notnull><number> | +<notnull><number>
+
+<char> ::= <letter> | <digit>
+<string> ::= <char> | <char><string>
+<constString> ::= "'<string>'"
+
+
+SYNTAX:
+
+<constant> ::= <integer> | <constString>
+
+<varType> ::= "BOOL" | "CHAR" | "INT" | "REAL" | "STRING"
+
+<varDecl> ::= <vartype> <identifier> ";"
+
+<declList> ::= <varDecl> | <varDecl><declList>
+
+<arrayDecl> ::= <vartype> "[" <number> "]" ";"
+
+<expr> ::= <expr> "+" <term> | <expr> "-" <term> | <term>
+
+<term> ::= <term> "*" <factor> | <term> "/" <factor> | <factor>
+
+<factor> ::= <identifier>| <constant> | "(" <expr> ")"
+
+<relation> ::= < | > | <= | >= | == | !=
+
+<condition> ::= <expr> <relation> <expr>
+
+
+STATEMENTS:
+
+<assigStmt> ::= <identifier> "=" <expr> ";"
+
+<whileStmt> ::= "WHILE" <condition> "{" <stmt> "}"
+
+<forStmt> ::= "FOR" "(" <vartype> <identifier> "IN" <array> ")" "{" <stmt> "}"
+
+<ifStmt> ::= "IF" <compCond> "{" <stmt> "}" |
+			<ifStmt> "ELSE IF" <compCond> "{" <stmt> "}" <ifStmt> |
+			<ifStmt> "ELSE" "{" <stmt> "}"
+
+<compCond> ::= <condition> | <condition> <relation> <compCond>
+
+<IOstmt> ::= "READ" ";"| "PRINT" <identifier> ";" | "PRINT" <expr> ";"
+
+<multiStmt> ::= <stmt> | <stmt> ";" <multiStmt> ";"
+
+<simplStmt> ::= <assigStmt> | <IOstmt>
+
+<complStmt> ::= <whileStmt> | <ifStmt> | <multiStmt> | <forStmt>
+
+<stmt> ::= <simplStmt> | <complStmt>
+
+
+USER DEFINED TYPE:
+
+<struct> ::= "STRUCT" <identifier> "{" <declList> "}"
+
+
+The scanner assignment will be diferentiated based on:
+1. Identifiers:
+a. length at most 8 characters
+2. Symbol Table:
+b. separate tables for indentifiers, respectively
+constants
+3. Symbol Table Organization:
+c. hashing table
+
+
+
+
+

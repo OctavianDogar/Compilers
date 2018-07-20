@@ -1,0 +1,4 @@
+list.toString().replace("[", "").replace("]", "").replace(",","");
+
+
+LAB 3: C/3

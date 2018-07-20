@@ -1,0 +1,9 @@
+#startStates
+A|B|C|D|E
+#endStates
+a|b|c|d|e|$
+#endAlphabet
+#startTransitions
+A:aD|eA
+B:$|cD
+#endTransitions

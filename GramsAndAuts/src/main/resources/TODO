@@ -1,0 +1,35 @@
+On UI: when inserting productions, have a textfield for all sets of of ways.
+The sets are split by " ; ".
+    - Parse the textfield and extract the singular sets
+    - Checking of existing elemnts in the singular sets is done at inserting level
+
+Daca primu merge in epsilon,
+sa nu mai apara ala in dreapta si nici altu sa nu mai mearga in epsilo
+
+
+Gram -> aut
+
+verificare sa fie regular -> daca nui regular exceptie
+adaugi la nonterminale din gramatica un K
+alfabetu ii terminalele din gram
+initial state la fel q0 == S
+pt final states: pe K, daca starea initiala din gramatica mere in epsilon il pui si pe el in finale
+tranzitii: (q,0) -> {r} == q -> 0r
+also, daca k combinat cu orice temrinal, mere epsilon
+
+
+Aut ->Gram
+
+non term is la fel; Q == N
+terminalele is alfabetu
+start ii acelasi q0 == S
+tranzitiile:
+
+tranz care provin dintr-un nontemrinal final
+(R, a) -> B
+R -> aB | a
+R final
+
+si pt restu nu mai adaugi  "| a"
+
+daca S -> epsilon; atunci mai adaug o productie

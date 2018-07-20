@@ -1,0 +1,12 @@
+#startNonTerminals
+S|A|B|C|D|
+#endNonTerminals
+a|(|)|+|*|$
+#endTerminals
+#startProductions
+S:BA
+A:+BA|$
+B:DC
+C:*DC|$
+D:(S)|a
+#endProductions

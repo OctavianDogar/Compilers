@@ -1,0 +1,9 @@
+#startNonTerminals
+A|B|C|D
+#endNonTerminals
+a|A|b|c|d|D|e|$
+#endTerminals
+A|B|C|D
+A:aD|eA|$
+B:$|cD
+#endProductions

@@ -1,0 +1,10 @@
+#start
+E|F|T
+#endStates
+a|+|*|(|)|$
+#endAlphabet
+#startTransitions
+E:E+T|T|$
+T:T*F|F
+F:(E)|a
+#end
